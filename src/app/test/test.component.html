@@ -1,0 +1,43 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+      <div class="navbar-header">
+          <a href="#" class="navbar-brand">ADAL Authentication</a>
+      </div>
+      
+      <div class="navbar-default">
+          <!-- <ul class="nav navbar-nav">
+              <li><a href="#" >Recipes</a></li>
+              <li><a href="#" (click)="OnSelect('shopping')">Shopping List</a></li>
+          </ul> -->
+          <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="IsAuthenticated"><a href="#" (click)="Logout()">Logout</a></li>
+            <li *ngIf="!IsAuthenticated"><a href="#" (click)="Login()">Login</a></li>
+          </ul>
+      </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <button *ngIf="IsAuthenticated" class="btn btn-info" (click)="GetData()">Connect to Service</button>
+      <div class="row" *ngIf="IsAuthenticated">
+        <p>Response will be Visible Below</p>
+        <hr/>
+        <p *ngFor="let entity of response;let i = index">
+          {{i}}. {{entity}}
+        </p>
+      </div>
+    </div>
+
+    <!-- <div class="col-xs-6">
+      <button *ngIf="IsAuthenticated" class="btn btn-info" (click)="GetUser()">Connect to Graph API</button>
+      <div class="row" *ngIf="IsAuthenticated">
+        <p>Response will be Visible Below</p>
+        <hr/>
+        <p *ngFor="let entity of userResponse;let i = index">
+          {{i}}. {{entity}}
+        </p>
+      </div>
+    </div> -->
+  </div>
+</div>
