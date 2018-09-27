@@ -1,0 +1,38 @@
+.mat-ink-bar{
+    background-color:#00ADEE;
+}
+
+.mat-tab-label-active{
+     color: #00ADEE !important;
+ } 
+
+
+.mat-tab{
+    width: 33%;
+}
+
+.container{
+    align-content: center;
+}
+
+.mat-card{
+    margin: 5%; 
+}
+
+.mat-tab{
+    border: orangered;
+}
+
+.mat-card-header{
+    margin-left: 35%;
+}
+
+
+.mat-card-title{
+    margin-left:25%;
+}
+
+.mat-card-content{
+   border: 1px solid green;
+}
+

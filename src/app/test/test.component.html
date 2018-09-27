@@ -1,28 +1,62 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
       <div class="navbar-header">
-          <a href="#" class="navbar-brand">ADAL Authentication</a>
-      </div>
-      
+            <a href="#" class="navbar-brand">ADAL Authentication</a>
+      </div>      
       <div class="navbar-default">
           <ul class="nav navbar-nav navbar-right">
             <li *ngIf="IsAuthenticated"><a href="#" (click)="Logout()">Logout</a></li>
             <li *ngIf="!IsAuthenticated"><a href="#" (click)="Login()">Login</a></li>
           </ul>
       </div>
+      
   </div>
+  <div *ngIf="LoggedInUser!=''" style='color: rgb(75, 81, 83); margin-left:1%;'><b>Welcome {{LoggedInUser}}</b></div>          
+  
 </nav>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-6">
-      <button *ngIf="IsAuthenticated" class="btn btn-info" (click)="GetData()">Connect to Service</button>
-      <div class="row" *ngIf="IsAuthenticated">
-        <p>Response will be Visible Below</p>
-        <hr/>
-        <p *ngFor="let entity of response;let i = index">
-          {{i}}. {{entity}}
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+
+    <mat-card *ngIf="!IsAuthenticated">
+        <mat-card-header>
+          <mat-card-title style="margin-left: 0%;">
+            <b>Welcome to HGV Authentication and Authorization POC</b>
+          </mat-card-title>
+        </mat-card-header>
+      </mat-card>
+
+
+<mat-card *ngIf="authenticatedUser">
+    <mat-card-header>
+        <mat-card-title><b>Role-based Authorization Demo</b></mat-card-title>
+        <mat-card-subtitle><b><a (click)="GetUserRole()">The Tabs below is based on the Logged In User's Role</a></b></mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content  *ngIf="IsAuthenticated">
+          <div class="container">
+              <div class="row">
+                <div class="col-sm-12">
+                    <mat-tab-group *ngIf="IsAuthenticated" (selectedTabChange)="TabSwitched($event)" >
+                        <mat-tab label="Inventory Manager" *ngIf="role=='InventoryManager'">Inventory Manager Will Work In This Space.</mat-tab>
+                        <mat-tab label="Premium Agent" *ngIf="role=='PremiumAgent'" > Premieum Agent Will Work In This Space. </mat-tab>
+                        <mat-tab label="Claims" *ngIf="role=='InventoryManager'||role=='PremiumAgent'||role=='Others'">  
+                            <div class="container">
+                                <div class="row">
+                                  <div class="col-xs-6">
+                                    <!-- <button *ngIf="IsAuthenticated" class="btn btn-info" (click)="GetData()">Connect to Service</button>
+                                    <div class="row" *ngIf="IsAuthenticated">
+                                      <p>Response will be Visible Below</p>
+                                      <hr/> -->
+                                      <p *ngFor="let entity of response;let i = index">
+                                        {{i}}. {{entity}}
+                                      </p>
+                                    <!-- </div> -->
+                                  </div>
+                                </div>
+                              </div>
+                              
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+              </div>
+          </div>
+      </mat-card-content>
+</mat-card>
+

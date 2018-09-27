@@ -52,57 +52,57 @@
 import { ConfigService } from './config.service';
 import { Injectable } from '@angular/core';
 
-import 'expose-loader?AuthenticationContext!../../../node_modules/adal-angular/lib/adal.js';
+// import 'expose-loader?AuthenticationContext!../../../node_modules/adal-angular/lib/adal.js';
 
-const createAuthContextFn: adal.AuthenticationContextStatic = AuthenticationContext;
+// const createAuthContextFn: adal.AuthenticationContextStatic = AuthenticationContext;
 
 @Injectable()
 export class AdalService {
 
-    private context: adal.AuthenticationContext;
+    // private context: adal.AuthenticationContext;
 
-    constructor(private configService: ConfigService) {
+    // constructor(private configService: ConfigService) {
 
-        this.context = new createAuthContextFn(configService.getAdalConfig());
-        if (this.context.isCallback(window.location.hash)) {
-            this.context.handleWindowCallback();
-        }
-    }
+    //     this.context = new createAuthContextFn(configService.getAdalConfig());
+    //     if (this.context.isCallback(window.location.hash)) {
+    //         this.context.handleWindowCallback();
+    //     }
+    // }
 
 
-    login() {
-        console.log('Inside Services Login');
-        this.context.login();
-    }
+    // login() {
+    //     console.log('Inside Services Login');
+    //     this.context.login();
+    // }
 
-    logout() {
+    // logout() {
 
-        this.context.logOut();
+    //     this.context.logOut();
 
-    }
+    // }
 
-    handleCallback() {
+    // handleCallback() {
 
-        this.context.handleWindowCallback();
+    //     this.context.handleWindowCallback();
 
-    }
+    // }
 
-    public get userInfo() {
+    // public get userInfo() {
 
-        return this.context.getCachedUser();
+    //     return this.context.getCachedUser();
 
-    }
+    // }
 
-    public accessToken() {
+    // public accessToken() {
 
-        return this.context.getCachedToken(this.configService.getAdalConfig().clientId);
+    //     return this.context.getCachedToken(this.configService.getAdalConfig().clientId);
 
-    }
+    // }
 
-    public get isAuthenticated() {
+    // public get isAuthenticated() {
 
-        return this.userInfo && this.accessToken;
+    //     return this.userInfo && this.accessToken;
 
-    }
+    // }
 
 }
